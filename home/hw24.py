@@ -1,39 +1,40 @@
-class Figure:
-    def __init__(self, a, b):
-        self.__a = a
-        self.__b = b
+class Pair:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
 
     def sum_res(self):
-        return f"Сумма: {self.__a + self.__b}"
+        return f"Сумма: {self.width + self.height}"
 
     def pr_res(self):
-        return f"Произведение: {self.__a * self.__b}"
+        return f"Произведение: {self.width * self.height}"
 
 
-class Rectangle(Figure):
-    def __init__(self, a, b):
-        super().__init__(a, b)
-        self.__a = a
-        self.__b = b
+class RightTriangle(Pair):
+    def __init__(self, width, height):
+        super().__init__(width, height)
+
+    def show_rect(self):
+        print(f"Прямоугольный треугольник: ({self.width}, {self.height}, {self.hypotenuse()})")
 
     def hypotenuse(self):
-        return f"Гипотенуза: {(self.__a ** 2 + self.__b ** 2) ** 0.5}"
-
-    def print_info(self):
-        return f"Прямоугольный треугольгик: ({self.__a}, {self.__b}, {self.hypotenuse()})"
+        return f"Гипотенуза: {(self.width ** 2 + self.height ** 2) ** 0.5}"
 
     def square_info(self):
-        return f"Площадь: {self.__a * self.__b / 2}"
+        return f"Площадь: {self.width * self.height / 2}"
 
 
-res = Figure(5, 8)
-rect = Rectangle(5, 8)
-print(rect.hypotenuse())
-print(rect.print_info())
-print(rect.square_info())
+shape1 = RightTriangle(5, 8)
+print(shape1.hypotenuse())
+shape1.show_rect()
+print(shape1.square_info())
 print()
-print(res.sum_res())
-print(res.pr_res())
+print(shape1.sum_res())
+print(shape1.pr_res())
 print()
-
-
+shape2 = RightTriangle(10, 20)
+shape2.show_rect()
+print(shape2.hypotenuse())
+print(shape2.sum_res())
+print(shape2.pr_res())
+print(shape2.square_info())

@@ -31,11 +31,11 @@
 # f.close()
 
 # ***
-# f = open('test.txt', 'r')
-# for line in f:
-#     print(line)
-#
-# f.close()
+f = open('test.txt', 'r')
+for line in f:
+    print(line)
+
+f.close()
 
 
 # Задача: Определите количество строк в файле
@@ -178,9 +178,9 @@
 # with open('one.txt', 'w') as f:
 #     f.write(text)
 
-read_file = 'one.txt'
-write_file = 'two.txt'
-with open(read_file, 'r') as fr, open(write_file, 'w') as fw:
-    for line in fr:
-        line = line.replace("Строка", "Линия - ")
-        fw.write(line)
+# read_file = 'one.txt'
+# write_file = 'two.txt'
+# with open(read_file, 'r') as fr, open(write_file, 'w') as fw:
+#     for line in fr:
+#         line = line.replace("Строка", "Линия - ")
+#         fw.write(line)
