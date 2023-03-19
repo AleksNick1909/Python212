@@ -164,3 +164,136 @@
 # Создать класс, который будет декоррировать функцию. Функция возвращает результат умножения
 # двух чисел (а = 2, b = 3), а класс возводит их в квадрат
 
+# class Power:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self, a, b):
+#         res = self.func(a, b)
+#         return res ** 2
+#
+#
+# @Power
+# def mult(a, b):
+#     return a * b
+#
+#
+# print(mult(2, 3))
+
+# ****
+
+# class MyDecorator:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self, *args, **kwargs):
+#         res = self.func(*args, **kwargs)
+#         star = "*" * 20
+#         return f"{star}\n{res}\n{star}"
+#
+#
+# @MyDecorator
+# def func1(a, b):
+#     return a * b
+#
+#
+# @MyDecorator
+# def func2(a, b, c):
+#     return a * b * c
+#
+#
+# print(func1(2, 5))
+# print(func2(6, 3, 2))
+
+# ****
+
+# class MyDecorator:
+#     def __init__(self, arg):
+#         self.name = arg
+#
+#     def __call__(self, func):
+#         def wrap(a, b):
+#             print("*" * 20)
+#             print(self.name)
+#             func(a, b)
+#             print("*" * 20)
+#
+#         return wrap
+#
+#
+# @MyDecorator("test")
+# def func1(a, b):
+#     print(a, b)
+#
+#
+# func1(2, 5)
+
+# *****
+# Создать класс, который будет декоррировать функцию. Функция возвращает результат умножения
+# двух чисел, а класс возводить их в степень, которую принимает декоратор
+
+
+# class Power:
+#     def __init__(self, arg):
+#         self.arg = arg
+#
+#     def __call__(self, func):
+#         def wrap(a, b):
+#             return func(a, b) ** self.arg
+#
+#         return wrap
+#
+#
+# @Power(3)
+# def mult(a, b):
+#     return a * b
+#
+#
+# print(mult(2, 2))
+
+# *********
+
+# def dec(fn):
+#     def wrap(*args, **kwargs):
+#         print("*" * 20)
+#         fn(*args, **kwargs)
+#         print("*" * 20)
+#     return wrap
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#     @dec
+#     def info(self):
+#         print(f"{self.name} {self.surname}")
+#
+#
+# p1 = Person("Виталий", "Карасев")
+# p1. info()
+
+# *****
+
+# def decorator(cls):
+#     class Wrap(cls):
+#         def double(self, value):
+#             return value * 2
+#
+#     return Wrap
+#
+#
+# @decorator
+# class Actual:
+#     def __init__(self):
+#         print("Инициализатор Actual")
+#
+#     def quad(self, value):
+#         return value * 4
+#
+#
+# obj = Actual()
+#
+# print(obj.quad(4))
+# print(obj.double(4))

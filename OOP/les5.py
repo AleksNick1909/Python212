@@ -128,8 +128,8 @@
 # **********
 # Абстрактный класс
 # from abc import ABC, abstractmethod
-
-
+#
+#
 # class Chess(ABC):
 #     def draw(self):
 #         print("Нарисовал шахматную фигуру")
@@ -672,96 +672,96 @@
 
 # число секунд в одном дне: 24*60*60 = 86400
 
-class Clock:
-    __DAY = 86400
-
-    def __init__(self, sec: int):
-        if not isinstance(sec, int):
-            raise ValueError("секунды должны быть целым числом")
-        self.sec = sec % self.__DAY
-
-    def get_format_time(self):
-        s = self.sec % 60
-        m = (self.sec // 60) % 60
-        h = (self.sec // 3600) % 24
-        return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
-
-    @staticmethod
-    def __get_form(x):
-        return str(x) if x > 9 else "0" + str(x)
-
-    def __add__(self, other):
-        if not isinstance(other, Clock):
-            raise AssertionError("Правый операнд должен быть типом Clock")
-        return Clock(self.sec + other.sec)
-
-    # def __sub__(self, other):
-    #     return Clock(self.sec - other.sec)
-    #
-    # def __mul__(self, other):
-    #     return Clock(self.sec * other.sec)
-    #
-    # def __floordiv__(self, other):
-    #     return Clock(self.sec // other.sec)
-    #
-    # def __mod__(self, other):
-    #     return Clock(self.sec % other.sec)
-
-    def __eq__(self, other):
-        if not isinstance(other, Clock):
-            raise AssertionError("Правый операнд должен быть типом Clock")
-        return self.sec == other.sec
-        # if self.sec == other.sec:
-        #     return True
-        # return False
-
-    def __ne__(self, other):
-        if not isinstance(other, Clock):
-            raise AssertionError("Правый операнд должен быть типом Clock")
-        return self.sec != other.sec
-
-    def __getitem__(self, item):
-        if not isinstance(item, str):
-            raise ValueError("Ключ должен быть строкой")
-
-        if item == "hour":
-            return (self.sec // 3600) % 24
-        elif item == "min":
-            return (self.sec // 60) % 60
-        elif item == "sec":
-            return self.sec % 60
-
-        return "Неверный ключ"
-
-    def __setitem__(self, key, value):
-        if not isinstance(key, str):
-            raise ValueError("Ключ должен быть строкой")
-        if not isinstance(value, int):
-            raise ValueError("Значение должны быть целым числом")
-
-        s = self.sec % 60
-        m = (self.sec // 60) % 60
-        h = (self.sec // 3600) % 24
-
-        if key == "hour":
-            self.sec = s + 60 * m + value * 3600
-        if key == "min":
-            self.sec = s + 60 * value + h * 3600
-        if key == "sec":
-            self.sec = value + 60 * m + h * 3600
+# class Clock:
+#     __DAY = 86400
+#
+#     def __init__(self, sec: int):
+#         if not isinstance(sec, int):
+#             raise ValueError("секунды должны быть целым числом")
+#         self.sec = sec % self.__DAY
+#
+#     def get_format_time(self):
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#         return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+#
+#     @staticmethod
+#     def __get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#     def __add__(self, other):
+#         if not isinstance(other, Clock):
+#             raise AssertionError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec + other.sec)
+#
+#     # def __sub__(self, other):
+#     #     return Clock(self.sec - other.sec)
+#     #
+#     # def __mul__(self, other):
+#     #     return Clock(self.sec * other.sec)
+#     #
+#     # def __floordiv__(self, other):
+#     #     return Clock(self.sec // other.sec)
+#     #
+#     # def __mod__(self, other):
+#     #     return Clock(self.sec % other.sec)
+#
+#     def __eq__(self, other):
+#         if not isinstance(other, Clock):
+#             raise AssertionError("Правый операнд должен быть типом Clock")
+#         return self.sec == other.sec
+#         # if self.sec == other.sec:
+#         #     return True
+#         # return False
+#
+#     def __ne__(self, other):
+#         if not isinstance(other, Clock):
+#             raise AssertionError("Правый операнд должен быть типом Clock")
+#         return self.sec != other.sec
+#
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#
+#         if item == "hour":
+#             return (self.sec // 3600) % 24
+#         elif item == "min":
+#             return (self.sec // 60) % 60
+#         elif item == "sec":
+#             return self.sec % 60
+#
+#         return "Неверный ключ"
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if not isinstance(value, int):
+#             raise ValueError("Значение должны быть целым числом")
+#
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#
+#         if key == "hour":
+#             self.sec = s + 60 * m + value * 3600
+#         if key == "min":
+#             self.sec = s + 60 * value + h * 3600
+#         if key == "sec":
+#             self.sec = value + 60 * m + h * 3600
 
 
 # другие методы в папке ООП 4
 
 
-c1 = Clock(80000)
-print(c1.get_format_time())
-print(c1["hour"], c1["min"], c1["sec"])
-c1["hour"] = 10
-c1["min"] = 20
-c1["sec"] = 30
-print(c1["hour"], c1["min"], c1["sec"])
-print(c1.get_format_time())
+# c1 = Clock(80000)
+# print(c1.get_format_time())
+# print(c1["hour"], c1["min"], c1["sec"])
+# c1["hour"] = 10
+# c1["min"] = 20
+# c1["sec"] = 30
+# print(c1["hour"], c1["min"], c1["sec"])
+# print(c1.get_format_time())
 
 # c2 = Clock(200)
 #
@@ -1022,57 +1022,57 @@ print(c1.get_format_time())
 
 # ******
 
-# class Human:
-#     def __init__(self, last_name, first_name, age):
-#         self.last_name = last_name
-#         self.first_name = first_name
-#         self.age = age
-#
-#     def info(self):
-#         print(f"\n{self.last_name} {self.first_name} {self.age}", end=" ")
-#
-#
-# class Student(Human):
-#     def __init__(self, last_name, first_name, age, speciality, group, rating):
-#         self.speciality = speciality
-#         self.group = group
-#         self.rating = rating
-#         super().__init__(last_name, first_name, age)
-#
-#     def info(self):
-#         super().info()
-#         print(f"{self.speciality} {self.group} {self.rating}", end=" ")
-#
-#
-# class Teacher(Human):
-#     def __init__(self, last_name, first_name, age, speciality, experience):
-#         self.speciality = speciality
-#         self.experience = experience
-#         super().__init__(last_name, first_name, age)
-#
-#     def info(self):
-#         super().info()
-#         print(f"{self.speciality} {self.experience}", end=" ")
-#
-#
-# class Graduate(Student):
-#     def __init__(self, last_name, first_name, age, speciality, group, rating, topic):
-#         self.topic = topic
-#         super().__init__(last_name, first_name, age, speciality, group, rating)
-#
-#     def info(self):
-#         super().info()
-#         print(f"{self.topic}", end=" ")
-#
-#
-# group1 = [
-#     Student("Батодалаев", "Даши", 16, "ГК", "Web_011", 5),
-#     Student("Загидуллин", "Линар", 32, "РПО", "PD_011", 5),
-#     Graduate("Шугани", "Сергей", 15, "РПО", "PD_011", 5, "Защита персональных данных"),
-#     Teacher("Даньшин", "Андрей", 38, "Астрофизика", 110),
-#     Student("Маркин", "Даниил", 17, "ГК", "Python_011", 5),
-#     Teacher("Башкиров", "Алексей", 45, "Разработка приложений", 20)
-# ]
-#
-# for i in group1:
-#     i.info()
+class Human:
+    def __init__(self, last_name, first_name, age):
+        self.last_name = last_name
+        self.first_name = first_name
+        self.age = age
+
+    def info(self):
+        print(f"\n{self.last_name} {self.first_name} {self.age}", end=" ")
+
+
+class Student(Human):
+    def __init__(self, last_name, first_name, age, speciality, group, rating):
+        self.speciality = speciality
+        self.group = group
+        self.rating = rating
+        super().__init__(last_name, first_name, age)
+
+    def info(self):
+        super().info()
+        print(f"{self.speciality} {self.group} {self.rating}", end=" ")
+
+
+class Teacher(Human):
+    def __init__(self, last_name, first_name, age, speciality, experience):
+        self.speciality = speciality
+        self.experience = experience
+        super().__init__(last_name, first_name, age)
+
+    def info(self):
+        super().info()
+        print(f"{self.speciality} {self.experience}", end=" ")
+
+
+class Graduate(Student):
+    def __init__(self, last_name, first_name, age, speciality, group, rating, topic):
+        self.topic = topic
+        super().__init__(last_name, first_name, age, speciality, group, rating)
+
+    def info(self):
+        super().info()
+        print(f"{self.topic}", end=" ")
+
+
+group1 = [
+    Student("Батодалаев", "Даши", 16, "ГК", "Web_011", 5),
+    Student("Загидуллин", "Линар", 32, "РПО", "PD_011", 5),
+    Graduate("Шугани", "Сергей", 15, "РПО", "PD_011", 5, "Защита персональных данных"),
+    Teacher("Даньшин", "Андрей", 38, "Астрофизика", 110),
+    Student("Маркин", "Даниил", 17, "ГК", "Python_011", 5),
+    Teacher("Башкиров", "Алексей", 45, "Разработка приложений", 20)
+]
+
+for i in group1:
+    i.info()
