@@ -165,89 +165,118 @@
 #     write_json(gen_person())
 
 # ******
-import json
-
-
-class Student:
-    def __init__(self, name, marks):
-        self.name = name
-        self.marks = marks
-
-    def __str__(self):
-        a = ', '.join(map(str, self.marks))
-        return f"Студент: {self.name}: {a}"
-
-    def add_marks(self, mark):
-        self.marks.append(mark)
-
-    def delete_mark(self, index):
-        self.marks.pop(index)
-
-    def edit_mark(self, index, new_mark):
-        self.marks[index] = new_mark
-
-    def average(self):
-        return round(sum(self.marks) / len(self.marks), 2)
-
-    @staticmethod
-    def dump_to_json(stud, filename):
-        data = {'name': stud.name, 'marks': stud.marks}
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=2)
-
-    @staticmethod
-    def load_from_file(filename):
-        with open(filename, 'r') as f:
-            print(json.load(f))
-
-
-class Group:
-    def __init__(self, students, group):
-        self.students = students
-        self.group = group
-
-    def __str__(self):
-        a = ''
-        for i in self.students:
-            a += str(i) + '\n'
-        return f"Группа: {self.group}\n{a}"
-
-    def add_student(self, student):
-        self.students.append(student)
-
-    def remove_student(self, index):
-        return self.students.pop(index)
-
-    @staticmethod
-    def change_group(group1, group2, index):
-        return group2.add_student(group1.remove_student(index))
-
-
-st1 = Student("Bodnya", [5, 4, 3, 4, 5, 3])
-st2 = Student("Nikolaenko", [2, 3, 5, 4, 2])
-st3 = Student("Birukov", [3, 5, 3, 2, 5, 4])
-Student.dump_to_json(st1, 'student.json')
-Student.dump_to_json(st2, 'student.json')
-Student.load_from_file('student.json')
-sts = [st1, st2]
-my_group = Group(sts, 'ГК Python')
-# print(my_group)
-my_group.add_student(st3)
-# print(my_group)
-my_group.remove_student(1)
-# print(my_group)
-group22 = [st2]
-my_group2 = Group(group22, 'ГК Web')
-print(my_group)
-print(my_group2)
-Group.change_group(my_group, my_group2, 0)
-print(my_group)
-print(my_group2)
-# print(st1)
-# st1.add_marks(4)
-# print(st1)
-# st1.delete_mark(2)
-# print(st1)
-# st1.edit_mark(4, 5)
-# print(st1)
-# print(st1.average())
+# import json
+#
+#
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+#
+#     def __str__(self):
+#         a = ', '.join(map(str, self.marks))
+#         return f"Студент: {self.name}: {a}"
+#
+#     def add_marks(self, mark):
+#         self.marks.append(mark)
+#
+#     def delete_mark(self, index):
+#         self.marks.pop(index)
+#
+#     def edit_mark(self, index, new_mark):
+#         self.marks[index] = new_mark
+#
+#     def average(self):
+#         return round(sum(self.marks) / len(self.marks), 2)
+#
+#     @staticmethod
+#     def dump_to_json(stud, filename):
+#         try:
+#             data = json.load(open(filename))
+#         except FileNotFoundError:
+#             data = []
+#
+#         data.append({'name': stud.name, 'marks': stud.marks})
+#         with open(filename, 'w') as f:
+#             json.dump(data, f, indent=2)
+#
+#     @staticmethod
+#     def load_from_file(filename):
+#         with open(filename, 'r') as f:
+#             print(json.load(f))
+#
+#
+# class Group:
+#     def __init__(self, students, group):
+#         self.students = students
+#         self.group = group
+#
+#     def __str__(self):
+#         a = ''
+#         for i in self.students:
+#             a += str(i) + '\n'
+#         return f"Группа: {self.group}\n{a}"
+#
+#     def add_student(self, student):
+#         self.students.append(student)
+#
+#     def remove_student(self, index):
+#         return self.students.pop(index)
+#
+#     @staticmethod
+#     def change_group(group1, group2, index):
+#         return group2.add_student(group1.remove_student(index))
+#
+#     def dump_group(self, file):
+#         try:
+#             data = json.load(open(file))
+#         except FileNotFoundError:
+#             data = []
+#
+#         with open(file, 'w') as f:
+#             stud_list = []
+#             for i in self.students:
+#                 stud_list.append([i.name, i.marks])
+#             data.append(stud_list)
+#             json.dump(data, f, indent=2)
+#
+#     @staticmethod
+#     def upload_journal(file):
+#         with open(file) as f:
+#             print(json.load(f))
+#
+#
+# st1 = Student("Bodnya", [5, 4, 3, 4, 5, 3])
+# st2 = Student("Nikolaenko", [2, 3, 5, 4, 2])
+# st3 = Student("Birukov", [3, 5, 3, 2, 5, 4])
+# file1 = 'student.json'
+# file2 = 'group.json'
+# # Student.dump_to_json(st1, file1)
+# # Student.dump_to_json(st2, file1)
+# # Student.load_from_file(file1)
+# # Student.load_from_file(file1)
+# sts = [st1, st2]
+# my_group = Group(sts, 'ГК Python')
+# my_group.dump_group(file2)
+# # print(my_group)
+# my_group.add_student(st3)
+# # print(my_group)
+# my_group.remove_student(1)
+# # print(my_group)
+# group22 = [st2]
+# my_group2 = Group(group22, 'ГК Web')
+# my_group.dump_group(file2)
+# Group.upload_journal(file2)
+# # print(my_group)
+# # print(my_group2)
+# Group.change_group(my_group, my_group2, 0)
+# # print(my_group)
+# # print(my_group2)
+# # print(st1)
+# # st1.add_marks(4)
+# # print(st1)
+# # st1.delete_mark(2)
+# # print(st1)
+# # st1.edit_mark(4, 5)
+# # print(st1)
+# # print(st1.average())
