@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 import csv
 
 
@@ -9,32 +8,26 @@ def get_html(url):
     return res.text
 
 
-def refined(s):
-    return re.sub(r"\D+", "", s)
-
-
 def write_csv(data):
-    with open("plugins.csv", 'a') as f:
+    with open("list.csv", 'a') as f:
         writer = csv.writer(f, delimiter=';', lineterminator='\r')
 
-        writer.writerow((data['name'], data['url'], data['rating']))
+        writer.writerow((data['name'], data['price'], data['url_img']))
 
 
 def get_data(html):
     soup = BeautifulSoup(html, "lxml")
-    p1 = soup.find_all('section', class_="plugin-section")[1]
-    plugins = p1.find_all('article')
-    for plugin in plugins:
-        name = plugin.find('h3').text
-        url = plugin.find('h3').find('a')['href']
-        rating = plugin.find('span', class_="rating-count").find('a').text
-        r = refined(rating)
-        data = {'name': name, 'url': url, 'rating': r}
+    data = soup.find_all("div", class_="col-lg-4 col-md-6 mb-4")
+    for i in data:
+        name = i.find("h4", class_="card-title").text
+        price = i.find("h5").text
+        url_img = "https://scrapingclub.com" + i.find('h4').find('a')['href']
+        data = {'name': name, 'price': price, 'url_img': url_img}
         write_csv(data)
 
 
 def main():
-    url = 'https://ru.wordpress.org/plugins/'
+    url = 'https://scrapingclub.com/exercise/list_basic/?page=1'
     get_data(get_html(url))
 
 
