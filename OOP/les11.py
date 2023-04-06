@@ -198,7 +198,7 @@
 #     main()
 
 # *****
-from parse import Parser
+from parse import Parser  # импорт с документа parse
 
 
 def main():
