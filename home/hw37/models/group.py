@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from SQL.models.database import Base
+from home.hw37.models.database import Base
 
 
 class Group(Base):

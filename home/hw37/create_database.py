@@ -1,11 +1,10 @@
-# заполняем таблицы фейковыми данными
 
 from faker import Faker
 
-from SQL.models.database import create_db, Session
-from SQL.models.lesson import Lesson
-from SQL.models.student import Student
-from SQL.models.group import Group
+from home.hw37.models.database import create_db, Session
+from home.hw37.models.lesson import Lesson
+from home.hw37.models.student import Student
+from home.hw37.models.group import Group
 
 
 def create_database(load_fake_data=True):
@@ -37,8 +36,9 @@ def _load_fake_data(session):
     for _ in range(50):
         full_name = faker.name().split()
         age = faker.random.randint(16, 25)
+        address = faker.address()
         group = faker.random.choice(group_list)
-        student = Student(full_name, age, group.id)
+        student = Student(full_name, age, address, group.id)
         session.add(student)
 
     session.commit()
