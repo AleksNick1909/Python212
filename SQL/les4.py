@@ -100,9 +100,9 @@ if __name__ == '__main__':
     # for it in session.query(distinct(Student.age)):
     #     print(it)
     # print("*" * 50)
-    # for it in session.query(Student.age).filter(Student.age < 20).distinct():
-    #     print(it)
-    # print("*" * 50)
+    for it in session.query(Student.age).filter(Student.age < 20).distinct():
+        print(it)
+    print("*" * 50)
 
 # ОБНОВЛЕНИЕ НАШИХ ДАННЫХ
 

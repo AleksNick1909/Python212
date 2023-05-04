@@ -34,44 +34,44 @@ from jinja2 import Template
 # print(msg)
 
 # ***
-# cities = [
-#     {'id': 1, 'city': 'Москва'},
-#     {'id': 2, 'city': 'Сочи'},
-#     {'id': 3, 'city': 'Смоленск'},
-#     {'id': 4, 'city': 'Минск'},
-#     {'id': 5, 'city': 'Ярославль'},
-# ]
-#
-# link = """<select name="cities">
-# {% for c in cities -%}
-# {% if c.id > 3 -%}
-#     <option value="{{ c['id'] }}">{{ c['city']}}</option>
-# {% elif c.city == "Москва" %}
-#     <option>{{ c['city'] }}</option>
-# {% else -%}
-#     {{ c['city'] }}
-# {% endif -%}
-# {% endfor -%}
-# </select>"""
-#
-# tm = Template(link)
-# msg = tm.render(cities=cities)
-#
-# print(msg)
-
-# ***
-car = [
-    {'model': 'Audi', 'price': 23000},
-    {'model': 'Skoda', 'price': 17300},
-    {'model': 'Renault', 'price': 44200},
-    {'model': 'Wolksvagen', 'price': 21300},
+cities = [
+    {'id': 1, 'city': 'Москва'},
+    {'id': 2, 'city': 'Сочи'},
+    {'id': 3, 'city': 'Смоленск'},
+    {'id': 4, 'city': 'Минск'},
+    {'id': 5, 'city': 'Ярославль'},
 ]
-lst = [1, 2, 3, 4, 5, 6]
-# tpl = "{{ cs | sum(attribute='price')}}"
-tpl = "{{ cs | sum }}"
-tm = Template(tpl)
-# msg = tm.render(cs=car)
-msg = tm.render(cs=lst)
+
+link = """<select name="cities">
+{% for c in cities -%}
+{% if c.id > 3 -%}
+    <option value="{{ c['id'] }}">{{ c['city']}}</option>
+{% elif c.city == "Москва" %}
+    <option>{{ c['city'] }}</option>
+{% else -%}
+    {{ c['city'] }}
+{% endif -%}
+{% endfor -%}
+</select>"""
+
+tm = Template(link)
+msg = tm.render(cities=cities)
 
 print(msg)
+
+# ***
+# car = [
+#     {'model': 'Audi', 'price': 23000},
+#     {'model': 'Skoda', 'price': 17300},
+#     {'model': 'Renault', 'price': 44200},
+#     {'model': 'Wolksvagen', 'price': 21300},
+# ]
+# lst = [1, 2, 3, 4, 5, 6]
+# # tpl = "{{ cs | sum(attribute='price')}}"
+# tpl = "{{ cs | sum }}"
+# tm = Template(tpl)
+# # msg = tm.render(cs=car)
+# msg = tm.render(cs=lst)
+#
+# print(msg)
 

@@ -4,7 +4,7 @@ from SQL.models.database import Base
 
 
 class Student(Base):
-    __tablename__ = 'car'  # создание таблицы
+    __tablename__ = 'student'  # создание таблицы
 
     id = Column(Integer, primary_key=True)
     surname = Column(String(250), nullable=False)  # nullable=False - поле обязательно для заполнения
