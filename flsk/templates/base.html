@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block title %}
     {% if title %}
     <title>Про Flask - {{ title }}</title>
@@ -19,12 +20,13 @@
         {% endfor %}
     </ul>
   {% endblock mainmenu%}
-
+<div class="content">
     {% if title %}
     <h1>{{ title }}</h1>
     {% else %}
     <h1>Про Flask</h1>
     {% endif %}
 {% endblock content %}
+</div>
 </body>
 </html>
