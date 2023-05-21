@@ -2,5 +2,15 @@
 
 {% block content %}
 {{ super() }}
-Главная страница
+<hr>
+<h2>Pricing</h2>
+<ul>
+    {% for p in posts %}
+    <li class="title">
+        <p><a href="{{ url_for('show_post', id_post=p.id) }}">{{ p.title }}</a></p>
+        <p>{{ p.price }} руб/мес</p>
+        <div class="annonce">{{ p.text[:240]|striptags }}</div>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock content %}
