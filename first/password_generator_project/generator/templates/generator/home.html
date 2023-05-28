@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+<div class="container">
   <h1>Генератор паролей</h1>
-  <form action="{% url 'password' % }">
+  <form action="{% url 'password' %}" method="get">
       <p><select name="length">
           {% for i in lst %}
               {% if i == 12 %}
@@ -22,6 +25,8 @@
           <input type="checkbox" name="special"> Спецсимволы
       </p>
       <input type="submit" value="Сгенерировать пароль">
+      <p><a href="{% url 'description' %}">Правила работы с приложением</a></p>
   </form>
+</div>
 </body>
 </html>
