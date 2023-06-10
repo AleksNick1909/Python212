@@ -7,7 +7,7 @@ class Todo(models.Model):
     memo = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     date_completed = models.DateTimeField(blank=True, null=True)
-    impotent = models.BooleanField(default=False)
+    important = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
