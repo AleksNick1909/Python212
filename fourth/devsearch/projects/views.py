@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Project
 from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from .models import Project
 
 
 def projects(request):
